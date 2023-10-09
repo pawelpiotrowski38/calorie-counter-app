@@ -1,0 +1,7 @@
+@use '../abstracts' as *;
+
+body {
+    min-height: 100vh;
+    background-color: $base-color;
+    -webkit-font-smoothing: antialiased;
+}
