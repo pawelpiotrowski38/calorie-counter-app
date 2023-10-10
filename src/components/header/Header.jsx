@@ -6,24 +6,24 @@ import Mask from './Mask';
 import './header.scss';
 
 export default function Header() {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isNavigationOpen, setIsNavigationOpen] = useState(false);
 
-    const handleToggleMobileMenu = function() {
-        setIsMobileMenuOpen((open) => !open);
+    const handleToggleNavigation = function() {
+        setIsNavigationOpen((open) => !open);
     }
 
     return (
         <header className='header'>
             <Logo />
             <Navigation
-                isMobileMenuOpen={isMobileMenuOpen}
+                isNavigationOpen={isNavigationOpen}
             />
             <HamburgerButton
-                isMobileMenuOpen={isMobileMenuOpen}
-                onToggleMobileMenu={handleToggleMobileMenu}
+                isNavigationOpen={isNavigationOpen}
+                onToggleNavigation={handleToggleNavigation}
             />
             <Mask
-                isState={isMobileMenuOpen}
+                isState={isNavigationOpen}
             />
         </header>
     )

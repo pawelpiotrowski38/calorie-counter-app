@@ -1,9 +1,9 @@
 import NavigationItem from "./NavigationItem";
 import './navigation.scss';
 
-export default function Navigation({ isMobileMenuOpen }) {
+export default function Navigation({ isNavigationOpen }) {
     return (
-        <nav className={`navigation ${isMobileMenuOpen ? 'navigation--visible' : ''}`}>
+        <nav className={`navigation ${isNavigationOpen ? 'navigation--visible' : ''}`}>
             <ul className="navigation__list">
                 <NavigationItem>
                     Home
