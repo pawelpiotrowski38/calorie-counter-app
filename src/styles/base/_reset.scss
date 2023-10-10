@@ -16,6 +16,12 @@ input, button, textarea, select {
     font: inherit;
 }
 
+button {
+    outline: none;
+    border: none;
+    background: none;
+}
+
 ol, ul {
 	list-style: none;
 }

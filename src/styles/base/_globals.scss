@@ -1,7 +1,19 @@
-@use '../abstracts' as *;
+// @use '../abstracts' as *;
 
 body {
     min-height: 100vh;
-    background-color: $base-color;
+    overflow-x: hidden;
+    background-color: var(--main-background-color);
+    color: var(--primary-text-color);
     -webkit-font-smoothing: antialiased;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
 }

@@ -1,2 +1,18 @@
-$base-color: hsl(0, 100%, 98%);
-$header-color: hsl(240, 100%, 50%);
+:root {
+    &, &.dark-mode {
+        --main-background-color: hsl(0, 0%, 4%);
+        --header-background-color: hsl(0, 0%, 10%);
+        --mobile-menu-background-color: hsl(0, 0%, 10%);
+        --primary-text-color: hsl(0, 0%, 95%);
+    }
+
+    &.light-mode {
+        --main-background-color: hsl(0, 0%, 98%);
+        --header-background-color: hsl(0, 0%, 95%);
+        --mobile-menu-background-color: hsl(0, 0%, 95%);
+        --primary-text-color: hsl(0, 0%, 5%);
+    }
+
+    --mask-color: hsla(0, 0%, 0%, 0.6);
+}
+

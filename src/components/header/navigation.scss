@@ -1,0 +1,20 @@
+.navigation {
+    position: absolute;
+    top: 0;
+    right: -15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 15rem;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    background-color: var(--mobile-menu-background-color);
+    z-index: 10;
+    transition: all 0.3s ease-in-out;
+    visibility: hidden;
+}
+
+.navigation--visible {
+    right: 0;
+    visibility: visible;
+}
