@@ -1,0 +1,51 @@
+.date-picker {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 400px;
+    padding: 0.25rem 0.875rem;
+    border-radius: 0.5rem;
+    background-color: var(--component-background-color);
+    color: var(--primary-text-color);
+
+    &__date-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__date {
+        margin-right: 0.5rem;
+        white-space: nowrap;
+    }
+
+    &__icon-container {
+        position: relative;
+        top: -0.0625rem;
+    }
+
+    &__icon {
+        min-width: 1.5rem;
+        cursor: pointer;
+    }
+
+    &__calendar-container {
+        position: absolute;
+        top: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-height: 0;
+        transform: scaleY(0);
+        opacity: 0;
+        transition: all 2s ease-in-out;
+
+        &--visible {
+            opacity: 1;
+            transform: scaleY(1);
+            max-height: 500px;
+        }
+    }
+}
+  

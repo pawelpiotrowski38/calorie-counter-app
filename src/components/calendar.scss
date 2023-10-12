@@ -1,0 +1,67 @@
+.calendar {
+    position: absolute;
+    top: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background-color: var(--component-background-color);
+    color: var(--primary-text-color);
+    border-radius: 0.5rem;
+    // visibility: hidden;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    height: 0;
+    overflow: hidden;
+
+    &--open {
+        visibility: visible;
+        opacity: 1;
+        height: auto;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0.875rem;
+    }
+
+    &__weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.125rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    &__weekday {
+        text-align: center;
+    }
+
+    &__days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.125rem;
+        padding: 0.5rem 0.5rem;
+    }
+
+    &__day {
+        padding: 0.25rem;
+        border-radius: 0.25rem;
+        text-align: center;
+        color: var(--primary-text-color);
+        transition: background-color 0.2s ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--calendar-hover-day-color);
+        }
+
+        &--selected {
+            background-color: var(--calendar-selected-day-color);
+        }
+
+        &--outside-current-month {
+            color: var(--calendar-outside-current-month-day-color);
+        }
+    }
+}

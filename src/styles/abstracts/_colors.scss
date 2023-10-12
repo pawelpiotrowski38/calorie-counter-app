@@ -1,18 +1,23 @@
 :root {
     &, &.dark-mode {
         --main-background-color: hsl(0, 0%, 4%);
-        --header-background-color: hsl(0, 0%, 10%);
+        --component-background-color: hsl(0, 0%, 10%);
         --mobile-menu-background-color: hsl(0, 0%, 10%);
         --primary-text-color: hsl(0, 0%, 95%);
+        --calendar-selected-day-color: hsl(231, 83%, 42%);
+        --calendar-hover-day-color: hsl(231, 83%, 55%);
     }
 
     &.light-mode {
         --main-background-color: hsl(0, 0%, 98%);
-        --header-background-color: hsl(0, 0%, 95%);
+        --component-background-color: hsl(0, 0%, 93%);
         --mobile-menu-background-color: hsl(0, 0%, 95%);
         --primary-text-color: hsl(0, 0%, 5%);
+        --calendar-selected-day-color: hsl(226, 83%, 70%);
+        --calendar-hover-day-color: hsl(226, 83%, 86%);
     }
 
     --mask-color: hsla(0, 0%, 0%, 0.6);
+    --calendar-outside-current-month-day-color: hsl(0, 0%, 45%);
 }
 
