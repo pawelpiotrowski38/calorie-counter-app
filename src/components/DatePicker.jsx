@@ -34,13 +34,12 @@ export default function DatePicker() {
                 <p className='date-picker__date'>
                     {selectedDate.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' })}
                 </p>
-                <div className='date-picker__icon-container'>
+                <button className='date-picker__calendar-button' onClick={handleToggleCalendar}>
                     <AiOutlineCalendar
                         size='24px'
-                        className='date-picker__icon'
-                        onClick={handleToggleCalendar}
+                        className='date-picker__calendar-icon'
                     />
-                </div>
+                </button>
             </div>
             <ArrowButton direction={'right'} onClickFunction={handleIncrementDate} />
             {isCalendarOpen && (

@@ -20,13 +20,14 @@
         white-space: nowrap;
     }
 
-    &__icon-container {
+    &__calendar-button {
         position: relative;
         top: -0.0625rem;
     }
 
-    &__icon {
+    &__calendar-icon {
         min-width: 1.5rem;
+        color: var(--primary-text-color);
         cursor: pointer;
     }
 
