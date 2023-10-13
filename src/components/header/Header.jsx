@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Logo from './Logo';
 import Navigation from './Navigation';
-import HamburgerButton from './HamburgerButton';
+import AvatarButton from './AvatarButton';
 import Mask from './Mask';
 import './header.scss';
 
@@ -18,8 +18,7 @@ export default function Header() {
             <Navigation
                 isNavigationOpen={isNavigationOpen}
             />
-            <HamburgerButton
-                isNavigationOpen={isNavigationOpen}
+            <AvatarButton
                 onToggleNavigation={handleToggleNavigation}
             />
             <Mask

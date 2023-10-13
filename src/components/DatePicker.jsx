@@ -9,7 +9,7 @@ import './datePicker.scss';
 export default function DatePicker() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-    const datePickerRef = useRef();
+    const datePickerRef = useRef(null);
 
     const handleIncrementDate = function() {
         setSelectedDate(addDays(selectedDate, 1));
