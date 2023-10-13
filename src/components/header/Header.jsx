@@ -17,6 +17,7 @@ export default function Header() {
             <Logo />
             <Navigation
                 isNavigationOpen={isNavigationOpen}
+                onSetIsNavigationOpen={setIsNavigationOpen}
             />
             <AvatarButton
                 onToggleNavigation={handleToggleNavigation}

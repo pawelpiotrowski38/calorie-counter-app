@@ -1,9 +1,18 @@
-import NavigationItem from "./NavigationItem";
+import NavigationItem from './NavigationItem';
+import { AiOutlineClose } from 'react-icons/ai';
 import './navigation.scss';
 
-export default function Navigation({ isNavigationOpen }) {
+export default function Navigation({ isNavigationOpen, onSetIsNavigationOpen }) {
     return (
         <nav className={`navigation ${isNavigationOpen ? 'navigation--visible' : ''}`}>
+            <div className='navigation__close-button-container'>
+                <button
+                    className='navigation__close-button'
+                    onClick={() => onSetIsNavigationOpen(false)}
+                >
+                    <AiOutlineClose size={'32px'} className='navigation__close-icon'/>
+                </button>
+            </div>
             <ul className="navigation__list">
                 <NavigationItem>
                     Home
