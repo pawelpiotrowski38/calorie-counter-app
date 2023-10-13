@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState, useRef } from 'react';
 import { addDays, subDays } from 'date-fns';
 import { AiOutlineCalendar } from 'react-icons/ai';
+import useClickOutside from '../hooks/useClickOutside';
 import ArrowButton from './ArrowButton';
 import Calendar from './Calendar';
 import './datePicker.scss';
@@ -8,7 +9,7 @@ import './datePicker.scss';
 export default function DatePicker() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-    const datePickerRef = useRef(null);
+    const datePickerRef = useRef();
 
     const handleIncrementDate = function() {
         setSelectedDate(addDays(selectedDate, 1));
@@ -22,19 +23,9 @@ export default function DatePicker() {
         setIsCalendarOpen((open) => !open);
     }
 
-    useEffect(() => {
-        const handleClickOutside = function(event) {
-            if (datePickerRef.current && !datePickerRef.current.contains(event.target)) {
-                setIsCalendarOpen(false)
-            }
-        }
-
-        document.addEventListener('mousedown', handleClickOutside);
-    
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [datePickerRef]);
+    useClickOutside(datePickerRef, () => {
+        setIsCalendarOpen(false)
+    });
       
     return (
         <div ref={datePickerRef} className='date-picker'>
@@ -45,7 +36,7 @@ export default function DatePicker() {
                 </p>
                 <div className='date-picker__icon-container'>
                     <AiOutlineCalendar
-                        size='1.5rem'
+                        size='24px'
                         className='date-picker__icon'
                         onClick={handleToggleCalendar}
                     />
