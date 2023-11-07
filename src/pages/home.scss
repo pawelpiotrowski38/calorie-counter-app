@@ -1,0 +1,7 @@
+.home {
+    margin: 0 0.75rem;
+
+    >:not(:last-child) {
+        margin-bottom: 0.625rem;
+    }
+}
