@@ -2,12 +2,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0.5rem 0.875rem;
+    padding: 0.625rem;
+    padding-bottom: 1rem;
     background-color: var(--component-background-color);
     border-radius: 0.5rem;
 
     &__heading {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.75rem;
         font-size: 1.25rem;
     }
 
@@ -17,19 +18,20 @@
         width: 100%;
     }
 
-    &__kcal-container {
+    &__cal-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-right: 0.875rem;
+        margin-right: 1rem;
     }
 
     &__nutritions-container {
         display: flex;
         flex-direction: column;
+        width: 100%;
 
         & >:not(:last-child) {
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
         }
     }
 }
