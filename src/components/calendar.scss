@@ -12,6 +12,7 @@
     transition: all 0.2s ease-in-out;
     height: 0;
     overflow: hidden;
+    z-index: 50;
 
     &--open {
         visibility: visible;
