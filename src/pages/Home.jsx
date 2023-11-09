@@ -1,5 +1,5 @@
-import DatePicker from "../components/DatePicker";
-import SummaryChart from "../components/SummaryChart";
+import DatePicker from "../ui/DatePicker";
+import SummaryChart from "../features/diary/SummaryChart";
 import './home.scss';
 
 export default function Home() {

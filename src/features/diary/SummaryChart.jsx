@@ -1,5 +1,5 @@
-import BasicProgressBar from './BasicProgressBar';
-import CircleProgressBar from './CircleProgressBar';
+import BasicProgressBar from '../../ui/BasicProgressBar';
+import CircleProgressBar from '../../ui/CircleProgressBar';
 import './summaryChart.scss';
 
 export default function SummaryChart({ heading, dayValues, userLimitValues }) {

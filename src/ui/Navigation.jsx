@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import useClickOutside from '../../hooks/useClickOutside';
+import useClickOutside from '../hooks/useClickOutside';
 import NavigationItem from './NavigationItem';
 import { AiOutlineClose } from 'react-icons/ai';
 import './navigation.scss';
