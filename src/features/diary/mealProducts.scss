@@ -1,0 +1,15 @@
+.meal-products {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    background-color: var(--element-background-color);
+
+    & >:first-child {
+        padding-top: 0.5rem;
+    }
+
+    & >:last-child {
+        padding-bottom: 0.625rem;
+    }
+}
