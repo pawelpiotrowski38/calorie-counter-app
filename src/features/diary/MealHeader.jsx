@@ -1,24 +1,24 @@
 import './mealHeader.scss';
 
-export default function MealHeader() {
+export default function MealHeader({ info }) {
     return (
         <div className='meal-header'>
             <div className='meal-header__info-container'>
                 <h2 className='meal-header__name'>
-                    Breakfast
+                    {info.name}
                 </h2>
                 <div className='meal-header__nutritions-container'>
                     <p className='meal-header__nutrition'>
-                        552 Cal
+                        {`${info.calories} Cal`}
                     </p>
                     <p className='meal-header__nutrition'>
-                        21g
+                        {`${info.proteins}g`}
                     </p>
                     <p className='meal-header__nutrition'>
-                        14g
+                        {`${info.fats}g`}
                     </p>
                     <p className='meal-header__nutrition'>
-                        45g
+                        {`${info.carbohydrates}g`}
                     </p>
                 </div>
             </div>

@@ -1,27 +1,27 @@
 import './mealProductsItem.scss';
 
-export default function MealProductsItem() {
+export default function MealProductsItem({ product }) {
     return (
         <li className='meal-products-item'>
             <div className='meal-products-item__info-container'>
                 <h3 className='meal-products-item__name'>
-                    Bread
+                    {product.name}
                 </h3>
                 <p className='meal-products-item__quantity'>
-                    4 slices
+                    {product.quantity}
                 </p>
                 <div className='meal-products-item__nutritions-container'>
                     <p className='meal-products-item__nutrition'>
-                        300 Cal
+                        {`${product.calories} Cal`}
                     </p>
                     <p className='meal-products-item__nutrition'>
-                        10g
+                        {`${product.proteins}g`}
                     </p>
                     <p className='meal-products-item__nutrition'>
-                        1g
+                        {`${product.fats}g`}
                     </p>
                     <p className='meal-products-item__nutrition'>
-                        36g
+                        {`${product.carbohydrates}g`}
                     </p>
                 </div>
             </div>
