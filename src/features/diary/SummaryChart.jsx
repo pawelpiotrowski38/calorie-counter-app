@@ -21,9 +21,11 @@ export default function SummaryChart({ heading, dayValues, userLimitValues }) {
                     <CircleProgressBar
                         value={calories}
                         limit={caloriesLimit}
+                        size={7.5}
+                        thickness={0.625}
                         color={aboveCaloriesLimit ? 'above-limit-progress-color' : 'calories-progress-color'}
                     >
-                        {`${calories}/${caloriesLimit} calories`}
+                        {`${calories}/${caloriesLimit} Calories`}
                     </CircleProgressBar>
                 </div>
                 <div className='summary-chart__nutritions-container'>
@@ -31,6 +33,7 @@ export default function SummaryChart({ heading, dayValues, userLimitValues }) {
                         <BasicProgressBar
                             value={proteins}
                             limit={proteinsLimit}
+                            thickness={0.625}
                             color={aboveProteinsLimit ? 'above-limit-progress-color' : 'proteins-progress-color'}
                         >
                             {`${proteins}g/${proteinsLimit}g`}
@@ -40,6 +43,7 @@ export default function SummaryChart({ heading, dayValues, userLimitValues }) {
                         <BasicProgressBar
                             value={fats}
                             limit={fatsLimit}
+                            thickness={0.625}
                             color={aboveFatsLimit ? 'above-limit-progress-color' : 'fats-progress-color'}
                         >
                             {`${fats}g/${fatsLimit}g`}
@@ -49,6 +53,7 @@ export default function SummaryChart({ heading, dayValues, userLimitValues }) {
                         <BasicProgressBar
                             value={carbohydrates}
                             limit={carbohydratesLimit}
+                            thickness={0.625}
                             color={aboveCarbohydratesLimit ? 'above-limit-progress-color' : 'carbohydrates-progress-color'}
                         >
                             {`${carbohydrates}g/${carbohydratesLimit}g`}
