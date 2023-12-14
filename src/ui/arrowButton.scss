@@ -1,26 +1,28 @@
 .arrow-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.25rem 0;
-    cursor: pointer;
+    color: var(--primary-text-color);
+    transition: all 0.25s ease-in-out;
 
-    &__icon {
-        border: solid var(--primary-text-color);
-        border-width: 0 2px 2px 0;
-        display: inline-block;
-        padding: 0.1875rem;
+    &--open {
+        transform: rotate(180deg);
+    }
 
-        &--left {
-            margin-left: 0.25rem;
-            transform: rotate(135deg);
-            -webkit-transform: rotate(135deg);
-        }
+    &--right {
+        transform: rotate(270deg);
+    }
 
-        &--right {
-            margin-right: 0.25rem;
-            transform: rotate(-45deg);
-            -webkit-transform: rotate(-45deg);
-        }
+    &--down {
+        transform: rotate(0deg);
+    }
+
+    &--left {
+        transform: rotate(90deg);
+    }
+
+    &--up {
+        transform: rotate(180deg);
+    }
+
+    &:hover {
+        cursor: pointer;
     }
 }

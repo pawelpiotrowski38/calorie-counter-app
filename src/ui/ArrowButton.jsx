@@ -1,15 +1,20 @@
+import { IoIosArrowDown } from "react-icons/io";
 import './arrowButton.scss';
 
-export default function ArrowButton({ direction, onClickFunction }) {
+export default function ArrowButton({ isOpen, onClickFunction, size, direction }) {
     return (
-        <button className='arrow-button' onClick={onClickFunction}>
-            <i
-                className={
-                    `arrow-button__icon
-                    ${direction === 'left' ? 'arrow-button__icon--left' : ''}
-                    ${direction === 'right' ? 'arrow-button__icon--right' : ''}`
-                }
-            ></i>
+        <button
+            className={`arrow-button ${isOpen ? 'arrow-button--open' : `arrow-button--${direction}`}`}
+            onClick={onClickFunction}
+        >
+            <IoIosArrowDown size={`${size}px`}/>
         </button>
     )
+}
+
+ArrowButton.defaultProps = {
+    isOpen: false,
+    onClickFunction: null,
+    size: 20,
+    direction: 'down',
 }
