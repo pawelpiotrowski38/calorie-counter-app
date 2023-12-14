@@ -1,12 +1,21 @@
+import ArrowButton from '../../ui/ArrowButton';
 import './mealHeader.scss';
 
-export default function MealHeader({ info }) {
+export default function MealHeader({ info, isOpen, onHandleOpen }) {
     return (
         <div className='meal-header'>
             <div className='meal-header__info-container'>
-                <h2 className='meal-header__name'>
-                    {info.name}
-                </h2>
+                <div
+                    className='meal-header__name-container'
+                    onClick={onHandleOpen}
+                >
+                    <h2 className='meal-header__name'>
+                        {info.name}
+                    </h2>
+                    <ArrowButton
+                        isOpen={isOpen}
+                    />
+                </div>
                 <div className='meal-header__nutritions-container'>
                     <p className='meal-header__nutrition'>
                         {`${info.calories} Cal`}
