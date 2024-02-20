@@ -1,50 +1,8 @@
+import { meals, userLimitValues } from "../data/constants";
 import DatePicker from "../ui/DatePicker";
-import SummaryChart from "../features/diary/SummaryChart";
-import Meal from "../features/diary/Meal";
+import SummaryChart from "../features/summaries/SummaryChart";
+import MealsList from "../features/meals/MealsList";
 import './home.scss';
-
-const meals = [
-    {
-        id: 1232,
-        name: 'Breakfast',
-        products: [
-            {
-                id: 34234,
-                name: 'Bread',
-                quantity: '4 slices',
-                calories: 300,
-                proteins: 10,
-                fats: 1,
-                carbohydrates: 58,
-            },
-            {
-                id: 7836,
-                name: 'Butter',
-                quantity: '12g',
-                calories: 100,
-                proteins: 1,
-                fats: 10,
-                carbohydrates: 0,
-            },
-            {
-                id: 65334,
-                name: 'Ham',
-                quantity: '50g',
-                calories: 115,
-                proteins: 16,
-                fats: 8,
-                carbohydrates: 1,
-            },
-        ],
-    },
-]
-
-const userLimitValues = {
-    caloriesLimit: 2500,
-    proteinsLimit: 100,
-    fatsLimit: 75,
-    carbohydratesLimit: 340,
-}
 
 export default function Home() {
     const dayCalories = meals.reduce((acc, currentObject) => {
@@ -95,18 +53,20 @@ export default function Home() {
     }
 
     return (
-        <div className="home">
-            <DatePicker />
-            <SummaryChart
-                heading={'Daily summary'}
-                dayValues={dayValues}
-                userLimitValues={userLimitValues}
-            />
-            {meals.map((meal) => (
-                <Meal key={meal.id}
-                    meal={meal}
+        <div className='home'>
+            <div className='home__date-picker-container'>
+                <DatePicker />
+            </div>
+            <div className='home__summary-chart-container'>
+                <SummaryChart
+                    heading={'Daily summary'}
+                    dayValues={dayValues}
+                    userLimitValues={userLimitValues}
                 />
-            ))}
+            </div>
+            <div className='home__meals-container'>
+                <MealsList meals={meals} />
+            </div>
         </div>
     )
 }
