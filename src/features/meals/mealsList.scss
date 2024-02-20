@@ -1,0 +1,10 @@
+.meals {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    & >:not(:last-child) {
+        margin-bottom: 0.5rem;
+    }
+}
