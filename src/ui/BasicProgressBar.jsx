@@ -1,13 +1,9 @@
 import './basicProgressBar.scss';
 
-export default function BasicProgressBar({ value, limit, thickness, color, children }) {
+export default function BasicProgressBar({ value, limit, color, children }) {
     const percentage = value/limit * 100;
 
     const barStyles = {
-        height: `${thickness}rem`
-    }
-
-    const insideStyles = {
         width: `${percentage}%`,
         backgroundColor: `var(--${color})`,
     }
@@ -17,13 +13,10 @@ export default function BasicProgressBar({ value, limit, thickness, color, child
             <p className='basic-progress-bar__title'>
                 {children}
             </p>
-            <div
-                className='basic-progress-bar__bar'
-                style={barStyles}
-            >
+            <div className='basic-progress-bar__bar'>
                 <div
                     className='basic-progress-bar__inside'
-                    style={insideStyles}    
+                    style={barStyles}    
                 >
                 </div>
             </div>
@@ -34,6 +27,5 @@ export default function BasicProgressBar({ value, limit, thickness, color, child
 BasicProgressBar.defaultProps = {
     value: 0,
     limit: 100,
-    thickness: 0.5,
     color: 'calories-progress-color',
 }

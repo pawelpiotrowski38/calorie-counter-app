@@ -9,7 +9,7 @@ export default function CircleProgressBar({ value, limit, size, thickness, color
     const mainStyles = {
         width: `${size}rem`,
         height: `${size}rem`,
-        background: `conic-gradient(var(--${color}) ${percentage}%, var(--main-background-color) 0)`,
+        background: `conic-gradient(var(--${color}) ${percentage}%, var(--body-background-color) 0)`,
         // fontSize: fontSize,
     }
 

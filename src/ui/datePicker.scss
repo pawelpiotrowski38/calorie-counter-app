@@ -3,10 +3,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 400px;
     padding: 0.25rem 0.875rem;
     border-radius: 0.5rem;
-    background-color: var(--component-background-color);
+    background-color: var(--card-background-color);
     color: var(--primary-text-color);
 
     &__date-container {
@@ -18,11 +17,17 @@
     &__date {
         margin-right: 0.5rem;
         white-space: nowrap;
+        color: var(--secondary-text-color);
+        font-size: 0.9375rem;
     }
 
     &__calendar-button {
-        position: relative;
-        top: -0.0625rem;
+
+        & > svg {
+            width: 1.375rem;
+            height: 1.375rem;
+            fill: var(--secondary-text-color);
+        }
     }
 
     &__calendar-icon {

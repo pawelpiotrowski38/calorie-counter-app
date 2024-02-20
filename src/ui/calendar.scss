@@ -4,13 +4,12 @@
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    background-color: var(--component-background-color);
-    color: var(--primary-text-color);
-    border-radius: 0.5rem;
-    // visibility: hidden;
-    opacity: 0;
-    transition: all 0.2s ease-in-out;
     height: 0;
+    border-radius: 0.5rem;
+    background-color: var(--card-background-color);
+    color: var(--primary-text-color);
+    box-shadow: 0 0.25rem 0.75rem var(--body-background-color);
+    opacity: 0;
     overflow: hidden;
     z-index: 50;
 
@@ -32,6 +31,7 @@
         grid-template-columns: repeat(7, 1fr);
         gap: 0.125rem;
         padding: 0.25rem 0.5rem;
+        font-size: 0.9375rem;
     }
 
     &__weekday {
@@ -43,6 +43,7 @@
         grid-template-columns: repeat(7, 1fr);
         gap: 0.125rem;
         padding: 0.5rem 0.5rem;
+        font-size: 0.9375rem;
     }
 
     &__day {
@@ -62,7 +63,7 @@
         }
 
         &--outside-current-month {
-            color: var(--calendar-outside-current-month-day-color);
+            color: var(--tertiary-text-color);
         }
     }
 }

@@ -1,13 +1,14 @@
 .basic-progress-bar {
     &__title {
         margin-bottom: 0.25rem;
-        font-size: 0.875rem;
+        font-size: 0.8125rem;
         font-weight: 500;
     }
 
     &__bar {
         width: 100%;
-        background-color: var(--main-background-color);
+        height: 0.5rem;
+        background-color: var(--body-background-color);
         border-radius: 0.5rem;
         overflow: hidden;
     }

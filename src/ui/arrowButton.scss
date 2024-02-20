@@ -1,6 +1,11 @@
 .arrow-button {
-    color: var(--primary-text-color);
     transition: all 0.25s ease-in-out;
+
+    & > svg {
+        width: 1.125rem;
+        height: 1.125rem;
+        fill: var(--primary-text-color);
+    }
 
     &--open {
         transform: rotate(180deg);
