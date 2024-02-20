@@ -7,28 +7,35 @@
     }
 }
  
- // medium devices
- @mixin breakpoint-md {
+// medium devices
+@mixin breakpoint-md {
     @media (min-width: #{$screen-md-min}) {
         @content;
     }
 }
  
- // large devices
- @mixin breakpoint-lg {
+// large devices
+@mixin breakpoint-lg {
     @media (min-width: #{$screen-lg-min}) {
         @content;
     }
 }
  
- // extra large devices
- @mixin breakpoint-xl {
+// extra large devices
+@mixin breakpoint-xl {
     @media (min-width: #{$screen-xl-min}) {
         @content;
     }
 }
 
- // custom devices
+// extra x2 large devices
+@mixin breakpoint-xxl {
+    @media (min-width: #{$screen-xxl-min}) {
+        @content;
+    }
+}
+
+// custom devices
 @mixin breakpoint-custom($screenSize) {
     @media (min-width: #{$screenSize}em) {
         @content;
