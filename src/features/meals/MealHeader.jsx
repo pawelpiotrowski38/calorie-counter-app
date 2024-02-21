@@ -1,6 +1,7 @@
 import { IoEllipsisVertical } from "react-icons/io5";
 import { IoAdd } from "react-icons/io5";
 import ArrowButton from '../../ui/ArrowButton';
+import MealNutritions from "./MealNutritions";
 import './mealHeader.scss';
 
 export default function MealHeader({ info, isOpen, onHandleOpen }) {
@@ -22,22 +23,12 @@ export default function MealHeader({ info, isOpen, onHandleOpen }) {
                         />
                     )}
                 </div>
-                <div className='meal-header__calories-container'>
-                    <p className='meal-header__nutrition'>
-                        {`${info.calories} Cal`}
-                    </p>
-                    <div className='meal-header__nutritions-container'>
-                        <p className='meal-header__nutrition'>
-                            {`${info.proteins}g`}
-                        </p>
-                        <p className='meal-header__nutrition'>
-                            {`${info.fats}g`}
-                        </p>
-                        <p className='meal-header__nutrition'>
-                            {`${info.carbohydrates}g`}
-                        </p>
-                    </div>
-                </div>
+                <MealNutritions
+                    calories={`${info.calories} Cal`}
+                    proteins={`${info.proteins}g`}
+                    fats={`${info.fats}g`}
+                    carbohydrates={`${info.carbohydrates}g`}
+                />
             </div>
             <div className='meal-header__buttons-container'>
                 <button className='meal-header__button meal-header__button--more'>

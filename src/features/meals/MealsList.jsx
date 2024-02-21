@@ -1,4 +1,5 @@
 import Meal from "./Meal";
+import MealNutritions from "./MealNutritions";
 import './mealsList.scss';
 
 const defaultMeals = [{
@@ -18,16 +19,26 @@ const defaultMeals = [{
 
 export default function MealsList({ meals }) {
     return (
-        <ul className='meals-list'>
-            {defaultMeals.map((defaultMeal) => {
-                const matchingMeal = meals.find((meal) => meal.meal_type === defaultMeal.meal_type);
-                return (
-                    <Meal
-                        key={defaultMeal.meal_type}
-                        meal={matchingMeal || defaultMeal}
-                    />
-                )
-            })}    
-        </ul>
+        <>
+            <div className='meals-list__header'>
+                <MealNutritions
+                    calories={''}
+                    proteins={'P'}
+                    fats={'F'}
+                    carbohydrates={'C'}
+                />
+            </div>
+            <ul className='meals-list'>
+                {defaultMeals.map((defaultMeal) => {
+                    const matchingMeal = meals.find((meal) => meal.meal_type === defaultMeal.meal_type);
+                    return (
+                        <Meal
+                            key={defaultMeal.meal_type}
+                            meal={matchingMeal || defaultMeal}
+                        />
+                    )
+                })}    
+            </ul>
+        </>
     )
 }

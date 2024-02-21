@@ -1,5 +1,6 @@
 import { RiEdit2Line } from "react-icons/ri";
 import { RiDeleteBin2Line } from "react-icons/ri";
+import MealNutritions from "./MealNutritions";
 import './mealProductsItem.scss';
 
 export default function MealProductsItem({ product }) {
@@ -12,22 +13,12 @@ export default function MealProductsItem({ product }) {
                 <p className='meal-products-item__quantity'>
                     {`${product.quantity}g`}
                 </p>
-                <div className='meal-products-item__calories-container'>
-                    <p className='meal-products-item__nutrition'>
-                        {`${product.calories} Cal`}
-                    </p>
-                    <div className='meal-products-item__nutritions-container'>
-                        <p className='meal-products-item__nutrition'>
-                            {`${product.proteins}g`}
-                        </p>
-                        <p className='meal-products-item__nutrition'>
-                            {`${product.fats}g`}
-                        </p>
-                        <p className='meal-products-item__nutrition'>
-                            {`${product.carbohydrates}g`}
-                        </p>
-                    </div>
-                </div>
+                <MealNutritions
+                    calories={`${product.calories} Cal`}
+                    proteins={`${product.proteins}g`}
+                    fats={`${product.fats}g`}
+                    carbohydrates={`${product.carbohydrates}g`}
+                />
             </div>
             <div className='meal-products-item__buttons-container'>
                 <button className='meal-products-item__button meal-products-item__button--edit'>
