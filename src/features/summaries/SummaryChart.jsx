@@ -2,8 +2,8 @@ import BasicProgressBar from '../../ui/BasicProgressBar';
 import CircleProgressBar from '../../ui/CircleProgressBar';
 import './summaryChart.scss';
 
-export default function SummaryChart({ heading, dayValues, userLimitValues }) {
-    const { calories, proteins, fats, carbohydrates } = dayValues;
+export default function SummaryChart({ heading, values, userLimitValues }) {
+    const { calories, proteins, fats, carbohydrates } = values;
     const { caloriesLimit, proteinsLimit, fatsLimit, carbohydratesLimit } = userLimitValues;
 
     const aboveCaloriesLimit = (calories - caloriesLimit) > 0;
