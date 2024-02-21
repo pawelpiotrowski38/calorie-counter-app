@@ -1,66 +1,41 @@
-import { meals, userLimitValues } from "../data/constants";
-import DatePicker from "../ui/DatePicker";
-import SummaryChart from "../features/summaries/SummaryChart";
-import MealsList from "../features/meals/MealsList";
+import { useEffect, useState } from 'react';
+import { getMeals } from '../api/apiMeals';
+import { userLimitValues } from '../data/constants';
+import { calculateDayNutritionSum } from '../utils/calculateNutritionsUtils';
+import { formatTodayDate } from '../utils/dateUtils';
+import DatePicker from '../ui/DatePicker';
+import SummaryChart from '../features/summaries/SummaryChart';
+import MealsList from '../features/meals/MealsList';
 import './home.scss';
 
 export default function Home() {
-    const dayCalories = meals.reduce((acc, currentObject) => {
-        const products = currentObject.products;
+    const [meals, setMeals] = useState([]);
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
-        const nestedCalories = products.reduce((nestedAcc, nestedObject) => {
-            return nestedAcc + nestedObject.calories;
-        }, 0);
-
-        return acc + nestedCalories;
-    }, 0);
-
-    const dayProteins = meals.reduce((acc, currentObject) => {
-        const products = currentObject.products;
-
-        const nestedCalories = products.reduce((nestedAcc, nestedObject) => {
-            return nestedAcc + nestedObject.proteins;
-        }, 0);
-
-        return acc + nestedCalories;
-    }, 0);
-
-    const dayFats = meals.reduce((acc, currentObject) => {
-        const products = currentObject.products;
-
-        const nestedCalories = products.reduce((nestedAcc, nestedObject) => {
-            return nestedAcc + nestedObject.fats;
-        }, 0);
-
-        return acc + nestedCalories;
-    }, 0);
-
-    const dayCarbohydrates = meals.reduce((acc, currentObject) => {
-        const products = currentObject.products;
-
-        const nestedCalories = products.reduce((nestedAcc, nestedObject) => {
-            return nestedAcc + nestedObject.carbohydrates;
-        }, 0);
-
-        return acc + nestedCalories;
-    }, 0);
+    useEffect(function () {
+        getMeals(formatTodayDate(selectedDate))
+            .then((data) => setMeals(data));
+    }, [selectedDate]);
 
     const dayValues = {
-        calories: dayCalories,
-        proteins: dayProteins,
-        fats: dayFats,
-        carbohydrates: dayCarbohydrates,
-    }
+        calories: calculateDayNutritionSum(meals, 'calories'),
+        proteins: calculateDayNutritionSum(meals, 'proteins'),
+        fats: calculateDayNutritionSum(meals, 'fats'),
+        carbohydrates: calculateDayNutritionSum(meals, 'carbohydrates'),
+    };
 
     return (
         <div className='home'>
             <div className='home__date-picker-container'>
-                <DatePicker />
+                <DatePicker 
+                    selectedDate={selectedDate}
+                    onSetSelectedDate={setSelectedDate}
+                />
             </div>
             <div className='home__summary-chart-container'>
                 <SummaryChart
                     heading={'Daily summary'}
-                    dayValues={dayValues}
+                    values={dayValues}
                     userLimitValues={userLimitValues}
                 />
             </div>
