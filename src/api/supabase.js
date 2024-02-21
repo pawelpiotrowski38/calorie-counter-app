@@ -4,7 +4,7 @@ const supabaseUrl = 'https://qxocswviuhfdtktvbsil.supabase.co';
 
 let supabaseKey = null;
 if (process.env.NODE_ENV === 'production') {
-    supabaseKey = process.env.API_KEY;
+    supabaseKey = process.env.VITE_API_KEY;
 } else {
     supabaseKey = import.meta.env.VITE_API_KEY;
 }
