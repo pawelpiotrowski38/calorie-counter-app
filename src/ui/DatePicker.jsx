@@ -6,17 +6,16 @@ import ArrowButton from './ArrowButton';
 import Calendar from './Calendar';
 import './datePicker.scss';
 
-export default function DatePicker() {
-    const [selectedDate, setSelectedDate] = useState(new Date());
+export default function DatePicker({ selectedDate, onSetSelectedDate }) {
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
     const datePickerRef = useRef(null);
 
     const handleIncrementDate = function() {
-        setSelectedDate(addDays(selectedDate, 1));
+        onSetSelectedDate(addDays(selectedDate, 1));
     };
   
     const handleDecrementDate = function() {
-        setSelectedDate(subDays(selectedDate, 1));
+        onSetSelectedDate(subDays(selectedDate, 1));
     };
 
     const handleToggleCalendar = function() {
@@ -45,7 +44,7 @@ export default function DatePicker() {
             {isCalendarOpen && (
                 <Calendar
                     selectedDate={selectedDate}
-                    onChangeDate={setSelectedDate}
+                    onChangeDate={onSetSelectedDate}
                     isCalendarOpen={isCalendarOpen}
                     onSetIsCalendarOpen={setIsCalendarOpen}
                 />

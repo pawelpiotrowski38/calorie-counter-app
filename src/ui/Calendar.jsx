@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { getDaysInMonth } from '../utils/dateUtils';
 import ArrowButton from './ArrowButton';
-import { getDaysInMonth } from '../utils/getDaysInMonth';
 import './calendar.scss';
 
 const weekdays = new Array(7).fill(0).map((_, i) => {

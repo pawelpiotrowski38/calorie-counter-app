@@ -21,8 +21,8 @@ export default function CircleProgressBar({ value, limit, size, thickness, color
     }
 
     const startEdgeStyles = {
-        width: `${thickness}rem`,
-        height: `${thickness}rem`,
+        width: `${value > 0 ? thickness : '0'}rem`,
+        height: `${value > 0 ? thickness : '0'}rem`,
         backgroundColor: `var(--${color})`,
     }
 
