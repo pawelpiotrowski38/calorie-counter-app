@@ -10,7 +10,7 @@ export default function MealProductsItem({ product }) {
                     {product.name}
                 </h3>
                 <p className='meal-products-item__quantity'>
-                    {product.quantity}
+                    {`${product.quantity}g`}
                 </p>
                 <div className='meal-products-item__calories-container'>
                     <p className='meal-products-item__nutrition'>

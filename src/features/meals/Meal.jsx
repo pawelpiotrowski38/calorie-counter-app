@@ -1,38 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { calculateMealNutritionSum } from '../../utils/calculateNutritionsUtils';
 import MealHeader from './MealHeader';
 import MealProducts from './MealProducts';
 import './meal.scss';
 
 export default function Meal({ meal }) {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(meal.meal_items.length > 0);
+
+    useEffect(function() {
+        setIsOpen(meal.meal_items.length > 0);
+    }, [meal.meal_items]);
 
     const handleOpen = function() {
         setIsOpen(!isOpen);
-    }
-
-    const mealCalories = meal.products.reduce((acc, currentValue) => {
-        return acc + currentValue.calories;
-    }, 0);
-
-    const mealProteins = meal.products.reduce((acc, currentValue) => {
-        return acc + currentValue.proteins;
-    }, 0);
-
-    const mealFats = meal.products.reduce((acc, currentValue) => {
-        return acc + currentValue.fats;
-    }, 0);
-
-    const mealCarbohydrates = meal.products.reduce((acc, currentValue) => {
-        return acc + currentValue.carbohydrates;
-    }, 0);
+    };
 
     const mealInfo = {
-        name: meal.name,
-        calories: mealCalories,
-        proteins: mealProteins,
-        fats: mealFats,
-        carbohydrates: mealCarbohydrates,
-    }
+        name: meal.meal_type[0].toUpperCase() + meal.meal_type.substring(1),
+        calories: calculateMealNutritionSum(meal, 'calories'),
+        proteins: calculateMealNutritionSum(meal, 'proteins'),
+        fats: calculateMealNutritionSum(meal, 'fats'),
+        carbohydrates: calculateMealNutritionSum(meal, 'carbohydrates'),
+    };
 
     return (
         <li className='meal'>
@@ -43,7 +32,7 @@ export default function Meal({ meal }) {
             />
             {isOpen && (
                 <MealProducts
-                    products={meal.products}
+                    products={meal.meal_items}
                 />
             )}
         </li>

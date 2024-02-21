@@ -4,19 +4,23 @@ import ArrowButton from '../../ui/ArrowButton';
 import './mealHeader.scss';
 
 export default function MealHeader({ info, isOpen, onHandleOpen }) {
+    const isMealEmpty = !info.calories;
+
     return (
         <div className='meal-header'>
             <div className='meal-header__info-container'>
                 <div
                     className='meal-header__name-container'
-                    onClick={onHandleOpen}
+                    onClick={!isMealEmpty ? onHandleOpen : null}
                 >
                     <h2 className='meal-header__name'>
                         {info.name}
                     </h2>
-                    <ArrowButton
-                        isOpen={isOpen}
-                    />
+                    {!isMealEmpty && (
+                        <ArrowButton
+                            isOpen={isOpen}
+                        />
+                    )}
                 </div>
                 <div className='meal-header__calories-container'>
                     <p className='meal-header__nutrition'>
