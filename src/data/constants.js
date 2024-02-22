@@ -39,4 +39,19 @@ export const userLimitValues = {
     proteinsLimit: 100,
     fatsLimit: 75,
     carbohydratesLimit: 340,
-}
+};
+
+export const defaultMeals = [{
+        meal_type: 'breakfast',
+        meal_items: [],
+    }, {
+        meal_type: 'lunch',
+        meal_items: [],
+    }, {
+        meal_type: 'snack',
+        meal_items: [],
+    }, {
+        meal_type: 'dinner',
+        meal_items: [],
+    },
+];
