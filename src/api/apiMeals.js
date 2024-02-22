@@ -16,3 +16,31 @@ export async function getMeals(date) {
 
     return data;
 }
+
+export async function deleteMeal(id) {
+    const { data, error } = await supabase
+        .from('meals')
+        .delete()
+        .eq('id', id);
+    
+    if (error) {
+        console.error(error);
+        throw new Error('Meal could not be deleted');
+    }
+
+    return data;
+}
+
+export async function deleteMealItem(id) {
+    const { data, error } = await supabase
+        .from('meal_items')
+        .delete()
+        .eq('id', id);
+
+    if (error) {
+        console.error(error);
+        throw new Error('Meal item could not be deleted');
+    }
+
+    return data;
+}
