@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { RiEdit2Line } from 'react-icons/ri';
 import { RiDeleteBin2Line } from 'react-icons/ri';
+import { toast } from 'react-toastify';
 import { deleteMealItem } from '../../api/apiMeals';
 import { formatTodayDate } from '../../utils/dateUtils';
 import MealNutritions from './MealNutritions';
@@ -12,9 +13,14 @@ export default function MealProductsItem({ product, selectedDate }) {
     const {isLoading: isDeleting, mutate } = useMutation({
         mutationFn: deleteMealItem,
         onSuccess: () => {
+            toast.success('Meal item successfully deleted');
+
             queryClient.invalidateQueries({
                 queryKey: ['meals', formatTodayDate(selectedDate)],
             });
+        },
+        onError: (error) => {
+            toast.error(error.message);
         },
     });
 

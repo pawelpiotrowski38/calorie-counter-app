@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 import { deleteMeal } from '../../api/apiMeals';
 import { formatTodayDate } from '../../utils/dateUtils';
 import { calculateMealNutritionSum } from '../../utils/calculateNutritionsUtils';
@@ -19,9 +20,14 @@ export default function Meal({ meal, selectedDate }) {
     const {isLoading: isDeleting, mutate } = useMutation({
         mutationFn: deleteMeal,
         onSuccess: () => {
+            toast.success('Meal successfully deleted');
+
             queryClient.invalidateQueries({
                 queryKey: ['meals', formatTodayDate(selectedDate)],
             });
+        },
+        onError: (error) => {
+            toast.error(error.message);
         },
     });
 
