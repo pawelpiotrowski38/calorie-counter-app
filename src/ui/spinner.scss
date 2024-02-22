@@ -1,0 +1,22 @@
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.spinner__spin {
+    display: inline-block;
+    border-style: solid;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    -webkit-animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes spin {
+    to { -webkit-transform: rotate(360deg); }
+}
