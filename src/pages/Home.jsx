@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { getMeals } from '../api/apiMeals';
-import { userLimitValues } from '../data/constants';
-import { calculateDayNutritionSum } from '../utils/calculateNutritionsUtils';
+import { defaultMeals, userLimitValues } from '../data/constants';
 import { formatTodayDate } from '../utils/dateUtils';
 import DatePicker from '../ui/DatePicker';
 import SummaryChart from '../features/summaries/SummaryChart';
+import MealNutritions from '../features/meals/MealNutritions';
 import MealsList from '../features/meals/MealsList';
+import Meal from '../features/meals/Meal';
 import './home.scss';
 
 export default function Home() {
@@ -16,13 +17,6 @@ export default function Home() {
         getMeals(formatTodayDate(selectedDate))
             .then((data) => setMeals(data));
     }, [selectedDate]);
-
-    const dayValues = {
-        calories: calculateDayNutritionSum(meals, 'calories'),
-        proteins: calculateDayNutritionSum(meals, 'proteins'),
-        fats: calculateDayNutritionSum(meals, 'fats'),
-        carbohydrates: calculateDayNutritionSum(meals, 'carbohydrates'),
-    };
 
     return (
         <div className='home'>
@@ -35,12 +29,29 @@ export default function Home() {
             <div className='home__summary-chart-container'>
                 <SummaryChart
                     heading={'Daily summary'}
-                    values={dayValues}
+                    meals={meals || []}
                     userLimitValues={userLimitValues}
                 />
             </div>
             <div className='home__meals-container'>
-                <MealsList meals={meals} />
+                <MealNutritions
+                    calories={''}
+                    proteins={'P'}
+                    fats={'F'}
+                    carbohydrates={'C'}
+                />
+                <MealsList>                                     
+                    {defaultMeals.map((defaultMeal) => {
+                        const matchingMeal = meals.find((meal) => meal.meal_type === defaultMeal.meal_type);
+                        return (
+                            <Meal
+                                key={defaultMeal.meal_type}
+                                meal={matchingMeal || defaultMeal}
+                                selectedDate={selectedDate}
+                            />
+                        )
+                    })}
+                </MealsList>
             </div>
         </div>
     )

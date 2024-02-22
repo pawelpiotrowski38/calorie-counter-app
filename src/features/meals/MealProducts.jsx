@@ -1,15 +1,9 @@
-import MealProductsItem from './MealProductsItem';
 import './mealProducts.scss';
 
-export default function MealProducts({ products }) {
+export default function MealProducts({ children }) {
     return (
         <ul className='meal-products'>
-            {products.map((product) => (
-                <MealProductsItem
-                    key={product.id}
-                    product={product}
-                />
-            ))}
+            {children}
         </ul>
     )
 }
