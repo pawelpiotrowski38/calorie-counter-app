@@ -4,7 +4,7 @@ import ArrowButton from '../../ui/ArrowButton';
 import MealNutritions from "./MealNutritions";
 import './mealHeader.scss';
 
-export default function MealHeader({ info, isOpen, onHandleOpen }) {
+export default function MealHeader({ info, isOpen, onHandleOpen, isDeleting, onMutate }) {
     const isMealEmpty = !info.calories;
 
     return (
@@ -31,10 +31,17 @@ export default function MealHeader({ info, isOpen, onHandleOpen }) {
                 />
             </div>
             <div className='meal-header__buttons-container'>
-                <button className='meal-header__button meal-header__button--more'>
+                <button
+                    className='meal-header__button meal-header__button--more'
+                    onClick={() => onMutate(info.id)}
+                    disabled={isDeleting}
+                >
                     <IoEllipsisVertical />
                 </button>
-                <button className='meal-header__button meal-header__button--add'>
+                <button
+                    className='meal-header__button meal-header__button--add'
+                    disabled={isDeleting}
+                >
                     <IoAdd />
                 </button>
             </div>

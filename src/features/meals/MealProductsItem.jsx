@@ -1,9 +1,23 @@
-import { RiEdit2Line } from "react-icons/ri";
-import { RiDeleteBin2Line } from "react-icons/ri";
-import MealNutritions from "./MealNutritions";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { RiEdit2Line } from 'react-icons/ri';
+import { RiDeleteBin2Line } from 'react-icons/ri';
+import { deleteMealItem } from '../../api/apiMeals';
+import { formatTodayDate } from '../../utils/dateUtils';
+import MealNutritions from './MealNutritions';
 import './mealProductsItem.scss';
 
-export default function MealProductsItem({ product }) {
+export default function MealProductsItem({ product, selectedDate }) {
+    const queryClient = useQueryClient();
+
+    const {isLoading: isDeleting, mutate } = useMutation({
+        mutationFn: deleteMealItem,
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ['meals', formatTodayDate(selectedDate)],
+            });
+        },
+    });
+
     return (
         <li className='meal-products-item'>
             <div className='meal-products-item__info-container'>
@@ -21,10 +35,17 @@ export default function MealProductsItem({ product }) {
                 />
             </div>
             <div className='meal-products-item__buttons-container'>
-                <button className='meal-products-item__button meal-products-item__button--edit'>
+                <button
+                    className='meal-products-item__button meal-products-item__button--edit'
+                    disabled={isDeleting}
+                >
                     <RiEdit2Line />
                 </button>
-                <button className='meal-products-item__button meal-products-item__button--delete'>
+                <button
+                    className='meal-products-item__button meal-products-item__button--delete'
+                    onClick={() => mutate(product.id)}
+                    disabled={isDeleting}
+                >
                     <RiDeleteBin2Line />
                 </button>
             </div>
