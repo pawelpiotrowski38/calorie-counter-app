@@ -1,10 +1,15 @@
+import { calculateDayNutritionSum } from '../../utils/calculateNutritionsUtils';
 import BasicProgressBar from '../../ui/BasicProgressBar';
 import CircleProgressBar from '../../ui/CircleProgressBar';
 import './summaryChart.scss';
 
-export default function SummaryChart({ heading, values, userLimitValues }) {
-    const { calories, proteins, fats, carbohydrates } = values;
+export default function SummaryChart({ heading, meals, userLimitValues }) {
     const { caloriesLimit, proteinsLimit, fatsLimit, carbohydratesLimit } = userLimitValues;
+
+    const calories = calculateDayNutritionSum(meals, 'calories');
+    const proteins = calculateDayNutritionSum(meals, 'proteins');
+    const fats = calculateDayNutritionSum(meals, 'fats');
+    const carbohydrates = calculateDayNutritionSum(meals, 'carbohydrates');
 
     const aboveCaloriesLimit = (calories - caloriesLimit) > 0;
     const aboveProteinsLimit = (proteins - proteinsLimit) > 0;
