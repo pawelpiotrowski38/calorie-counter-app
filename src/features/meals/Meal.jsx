@@ -7,14 +7,17 @@ import { calculateMealNutritionSum } from '../../utils/calculateNutritionsUtils'
 import MealHeader from './MealHeader';
 import MealProducts from './MealProducts';
 import MealProductsItem from './MealProductsItem';
+import Search from '../search/Search';
+import Mask from '../../ui/Mask';
 import './meal.scss';
 
 export default function Meal({ meal, selectedDate }) {
     const queryClient = useQueryClient();
-    const [isOpen, setIsOpen] = useState(meal.meal_items.length > 0);
+    const [isAddOpen, setIsAddOpen] = useState(false);
+    const [isMealOpen, setIsMealOpen] = useState(meal.meal_items.length > 0);
 
     useEffect(function() {
-        setIsOpen(meal.meal_items.length > 0);
+        setIsMealOpen(meal.meal_items.length > 0);
     }, [meal.meal_items]);
 
     const {isLoading: isDeleting, mutate } = useMutation({
@@ -31,12 +34,16 @@ export default function Meal({ meal, selectedDate }) {
         },
     });
 
-    const handleOpen = function() {
-        setIsOpen(!isOpen);
+    const handleAddOpen = function() {
+        setIsAddOpen(!isAddOpen);
+    };
+
+    const handleMealOpen = function() {
+        setIsMealOpen(!isMealOpen);
     };
 
     const mealInfo = {
-        id: meal.id,
+        id: meal.id || 0,
         name: meal.meal_type[0].toUpperCase() + meal.meal_type.substring(1),
         calories: calculateMealNutritionSum(meal, 'calories'),
         proteins: calculateMealNutritionSum(meal, 'proteins'),
@@ -46,14 +53,26 @@ export default function Meal({ meal, selectedDate }) {
 
     return (
         <li className='meal'>
+            {isAddOpen && (
+                <>
+                    <Search
+                        mealId={meal.id || 0}
+                        mealType={meal.meal_type}
+                        selectedDate={selectedDate}
+                        onSetIsAddOpen={setIsAddOpen} />
+                    <Mask isState={isAddOpen} />
+                </>
+            )}
             <MealHeader
                 info={mealInfo}
-                isOpen={isOpen}
-                onHandleOpen={handleOpen}
+                isAddOpen={isAddOpen}
+                isMealOpen={isMealOpen}
+                onHandleAddOpen={handleAddOpen}
+                onHandleMealOpen={handleMealOpen}
                 isDeleting={isDeleting}
                 onMutate={mutate}
             />
-            {isOpen && (
+            {isMealOpen && (
                 <MealProducts>
                     {meal.meal_items.map((meal_item) => (
                         <MealProductsItem
