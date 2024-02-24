@@ -1,7 +1,7 @@
 import { useRef } from 'react';
-import useClickOutside from '../hooks/useClickOutside';
-import NavigationItem from './NavigationItem';
+import { useClickOutside } from '../hooks/useClickOutside';
 import { AiOutlineClose } from 'react-icons/ai';
+import NavigationItem from './NavigationItem';
 import './navigation.scss';
 
 export default function Navigation({ isNavigationOpen, onSetIsNavigationOpen }) {

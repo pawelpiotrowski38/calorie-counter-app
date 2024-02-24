@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
+import { useClickOutside } from '../hooks/useClickOutside';
 import { addDays, subDays } from 'date-fns';
 import { AiOutlineCalendar } from 'react-icons/ai';
-import useClickOutside from '../hooks/useClickOutside';
 import ArrowButton from './ArrowButton';
 import Calendar from './Calendar';
 import './datePicker.scss';
