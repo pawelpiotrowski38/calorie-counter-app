@@ -1,0 +1,10 @@
+.meals {
+
+    & >:first-child {
+        margin-bottom: 0.5rem;
+    }
+
+    & >:nth-child(2) {
+        margin-bottom: 0.75rem;
+    }
+}
