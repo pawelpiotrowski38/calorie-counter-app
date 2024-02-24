@@ -37,7 +37,7 @@ export default function Meals() {
                     />
                     <MealsList>                                     
                         {defaultMeals.map((defaultMeal) => {
-                            const matchingMeal = meals.find((meal) => meal.meal_type === defaultMeal.meal_type);
+                            const matchingMeal = meals.find((meal) => meal.meal_type.toLowerCase() === defaultMeal.meal_type);
                             return (
                                 <Meal
                                     key={defaultMeal.meal_type}
