@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
-import { deleteMeal } from '../../api/apiMeals';
-import { formatTodayDate } from '../../utils/dateUtils';
+import { useState } from 'react';
+import { useDeleteMeal } from './useDeleteMeal';
+import { useAddMealItem } from './useAddMealItem';
+import { useDeleteMealItem } from './useDeleteMealItem';
 import { calculateMealNutritionSum } from '../../utils/calculateNutritionsUtils';
 import MealHeader from './MealHeader';
 import MealProducts from './MealProducts';
@@ -12,27 +11,12 @@ import Mask from '../../ui/Mask';
 import './meal.scss';
 
 export default function Meal({ meal, selectedDate }) {
-    const queryClient = useQueryClient();
     const [isAddOpen, setIsAddOpen] = useState(false);
-    const [isMealOpen, setIsMealOpen] = useState(meal.meal_items.length > 0);
+    const [isMealOpen, setIsMealOpen] = useState(true);
 
-    useEffect(function() {
-        setIsMealOpen(meal.meal_items.length > 0);
-    }, [meal.meal_items]);
-
-    const {isLoading: isDeleting, mutate } = useMutation({
-        mutationFn: deleteMeal,
-        onSuccess: () => {
-            toast.success('Meal successfully deleted');
-
-            queryClient.invalidateQueries({
-                queryKey: ['meals', formatTodayDate(selectedDate)],
-            });
-        },
-        onError: (error) => {
-            toast.error(error.message);
-        },
-    });
+    const { isDeletingMeal, deleteMeal } = useDeleteMeal(selectedDate);
+    const { isAddingMealItem, addMealItem } = useAddMealItem(selectedDate);
+    const { isDeleteingMealItem, deleteMealItem } = useDeleteMealItem(selectedDate);
 
     const handleAddOpen = function() {
         setIsAddOpen(!isAddOpen);
@@ -56,21 +40,24 @@ export default function Meal({ meal, selectedDate }) {
             {isAddOpen && (
                 <>
                     <Search
-                        mealId={meal.id || 0}
-                        mealType={meal.meal_type}
+                        mealId={mealInfo.id || 0}
+                        mealType={mealInfo.name}
+                        onSetIsAddOpen={setIsAddOpen}
                         selectedDate={selectedDate}
-                        onSetIsAddOpen={setIsAddOpen} />
+                        isAddingMealItem={isAddingMealItem}
+                        onAddMealItem={addMealItem}
+                    />
                     <Mask isState={isAddOpen} />
                 </>
             )}
             <MealHeader
-                info={mealInfo}
-                isAddOpen={isAddOpen}
+                mealInfo={mealInfo}
                 isMealOpen={isMealOpen}
-                onHandleAddOpen={handleAddOpen}
+                isAddOpen={isAddOpen}
                 onHandleMealOpen={handleMealOpen}
-                isDeleting={isDeleting}
-                onMutate={mutate}
+                onHandleAddOpen={handleAddOpen}
+                isDeleteingMeal={isDeletingMeal}
+                onDeleteMeal={deleteMeal}
             />
             {isMealOpen && (
                 <MealProducts>
@@ -78,7 +65,8 @@ export default function Meal({ meal, selectedDate }) {
                         <MealProductsItem
                             key={meal_item.id}
                             product={meal_item}
-                            selectedDate={selectedDate}
+                            isDeleteingMealItem={isDeleteingMealItem}
+                            onDeleteMealItem={deleteMealItem}
                         />
                     ))}
                 </MealProducts>

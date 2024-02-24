@@ -1,7 +1,6 @@
 import { formatTodayDate } from "../../utils/dateUtils";
 
-export default function SearchResultsItem({ mealId, mealType, selectedDate, food, onMutate, isAdding }) {
-
+export default function SearchResultsItem({ mealId, mealType, food, selectedDate, onAddMealItem, isAddingMealItem }) {
     const foodObj = {
         mealId: mealId,
         mealType: mealType,
@@ -12,11 +11,11 @@ export default function SearchResultsItem({ mealId, mealType, selectedDate, food
     };
 
     return (
-        <li key={food.fdcId} className='search-results-item'>
+        <li className='search-results-item'>
             {`${food.description} ${food.brandName}`}
             <button
-                onClick={() => onMutate(foodObj)}
-                disabled={isAdding}
+                onClick={() => onAddMealItem(foodObj)}
+                disabled={isAddingMealItem}
             >
                 Add
             </button>

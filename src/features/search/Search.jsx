@@ -1,52 +1,20 @@
 import { useRef, useState } from 'react';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
-import { searchProducts } from '../../api/apiSearch';
-import { addMealItem } from '../../api/apiMeals';
-import useClickOutside from '../../hooks/useClickOutside';
-import useDebounce from '../../hooks/useDebounce';
-import { formatTodayDate } from '../../utils/dateUtils';
+import { useClickOutside } from '../../hooks/useClickOutside';
+import { useSearchProducts } from './useSearchProducts';
 import SearchResults from './SearchResults';
 import SearchResultsItem from './SearchResultsItem';
 import Spinner from '../../ui/Spinner';
 import './search.scss';
 
-export default function Search({ mealId, mealType, selectedDate, onSetIsAddOpen }) {
-    const queryClient = useQueryClient();
-    
+export default function Search({ mealId, mealType, onSetIsAddOpen, selectedDate, isAddingMealItem, onAddMealItem }) {
     const searchRef = useRef(null);
-
     const [search, setSearch] = useState('');
-    const debouncedSearch = useDebounce(search, 500);
-
+    
     useClickOutside(searchRef, () => {
         onSetIsAddOpen(false);
     });
 
-    const { isLoading, data, error } = useQuery({
-        enabled: !!debouncedSearch,
-        queryKey: ['search', debouncedSearch],
-        queryFn: () => {
-            if (debouncedSearch) {
-                return searchProducts(search);
-            }
-            return null;
-        },
-    });
-
-    const {isLoading: isAdding, mutate } = useMutation({
-        mutationFn: addMealItem,
-        onSuccess: () => {
-            toast.success('Meal item successfully added');
-
-            queryClient.invalidateQueries({
-                queryKey: ['meals', formatTodayDate(selectedDate)],
-            });
-        },
-        onError: (error) => {
-            toast.error(error.message);
-        },
-    });
+    const { isLoadingProducts, products } = useSearchProducts(search);
 
     return (
         <div ref={searchRef} className='search'>
@@ -58,19 +26,19 @@ export default function Search({ mealId, mealType, selectedDate, onSetIsAddOpen 
                 id='product'
                 name='product'
             />
-            {isLoading ? (
+            {isLoadingProducts ? (
                 <Spinner />
             ) : (
                 <SearchResults>
-                    {data && data.foods.map(food => (
+                    {products && products.foods.map(food => (
                         <SearchResultsItem
                             key={food.fdcId}
                             mealId={mealId}
                             mealType={mealType}
-                            selectedDate={selectedDate}
                             food={food}
-                            onMutate={mutate}
-                            isAdding={isAdding}
+                            selectedDate={selectedDate}
+                            onAddMealItem={onAddMealItem}
+                            isAddingMealItem={isAddingMealItem}
                         />
                     ))}
                 </SearchResults>
