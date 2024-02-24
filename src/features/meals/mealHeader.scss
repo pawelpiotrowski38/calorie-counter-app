@@ -5,6 +5,10 @@
     width: 100%;
     padding: 0.625rem 0.75rem;
 
+    &--open {
+        border-bottom: 0.125rem solid var(--body-background-color);
+    }
+
     &__name-container {
         display: flex;
         justify-content: flex-start;
