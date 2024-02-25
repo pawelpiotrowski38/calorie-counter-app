@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { useDeleteMeal } from './useDeleteMeal';
-import { useAddMealItem } from './useAddMealItem';
 import { useDeleteMealItem } from './useDeleteMealItem';
 import { calculateMealNutritionSum } from '../../utils/calculateNutritionsUtils';
 import MealHeader from './MealHeader';
 import MealProducts from './MealProducts';
 import MealProductsItem from './MealProductsItem';
 import Search from '../search/Search';
-import Mask from '../../ui/Mask';
+import Modal from '../../ui/Modal';
 import './meal.scss';
 
 export default function Meal({ meal, selectedDate }) {
@@ -15,7 +14,6 @@ export default function Meal({ meal, selectedDate }) {
     const [isMealOpen, setIsMealOpen] = useState(true);
 
     const { isDeletingMeal, deleteMeal } = useDeleteMeal(selectedDate);
-    const { isAddingMealItem, addMealItem } = useAddMealItem(selectedDate);
     const { isDeleteingMealItem, deleteMealItem } = useDeleteMealItem(selectedDate);
 
     const handleAddOpen = function() {
@@ -38,17 +36,14 @@ export default function Meal({ meal, selectedDate }) {
     return (
         <li className='meal'>
             {isAddOpen && (
-                <>
+                <Modal isOpen={isAddOpen}>
                     <Search
                         mealId={mealInfo.id || 0}
                         mealType={mealInfo.name}
                         onSetIsAddOpen={setIsAddOpen}
                         selectedDate={selectedDate}
-                        isAddingMealItem={isAddingMealItem}
-                        onAddMealItem={addMealItem}
                     />
-                    <Mask isState={isAddOpen} />
-                </>
+                </Modal>
             )}
             <MealHeader
                 mealInfo={mealInfo}
