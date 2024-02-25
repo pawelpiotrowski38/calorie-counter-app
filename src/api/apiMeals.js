@@ -31,8 +31,14 @@ export async function deleteMeal(id) {
     return data;
 }
 
-export async function addMealItem(mealItem) {
+export async function addMealItem({ mealItem, quantity }) {
     const doesMealExist = mealItem.mealId > 0;
+
+    const regex = /^[1-9]\d*$/;
+
+    if (!regex.test(quantity) || !(quantity > 0)) {
+        throw new Error('Quanity must be a positive integer');
+    }
     
     let newMealId = 0;
 
@@ -54,34 +60,17 @@ export async function addMealItem(mealItem) {
 
     const newMealItemMealId = newMealId || mealItem.mealId;
 
-    let caloriesValue = 0;
-    let proteinsValue = 0;
-    let fatsValue = 0;
-    let carbohydratesValue = 0;
-
-    mealItem.nutrients.forEach((nutrient) => {
-        if (nutrient.nutrientId === 1008) {
-            caloriesValue = nutrient.value;
-        } else if (nutrient.nutrientId === 1003) {
-            proteinsValue = nutrient.value;
-        } else if (nutrient.nutrientId === 1004) {
-            fatsValue = nutrient.value;
-        } else if (nutrient.nutrientId === 1005) {
-            carbohydratesValue = nutrient.value;
-        }
-    });
-
     const { data, error } = await supabase
         .from('meal_items')
         .insert([
             {
                 meal_id: newMealItemMealId,
                 name: mealItem.name,
-                quantity: 100,
-                calories: caloriesValue,
-                proteins: proteinsValue,
-                fats: fatsValue,
-                carbohydrates: carbohydratesValue,
+                quantity: quantity,
+                calories: Math.round(quantity/100 * mealItem.nutrients.calories.value),
+                proteins: parseFloat((quantity/100 * mealItem.nutrients.proteins.value).toFixed(2)),
+                fats: parseFloat((quantity/100 * mealItem.nutrients.fats.value).toFixed(2)),
+                carbohydrates: parseFloat((quantity/100 * mealItem.nutrients.carbohydrates.value).toFixed(2)),
             },
         ]);
     
