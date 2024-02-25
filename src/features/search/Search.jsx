@@ -4,9 +4,10 @@ import { useSearchProducts } from './useSearchProducts';
 import SearchResults from './SearchResults';
 import SearchResultsItem from './SearchResultsItem';
 import Spinner from '../../ui/Spinner';
+import Input from '../../ui/Input';
 import './search.scss';
 
-export default function Search({ mealId, mealType, onSetIsAddOpen, selectedDate, isAddingMealItem, onAddMealItem }) {
+export default function Search({ mealId, mealType, onSetIsAddOpen, selectedDate }) {
     const searchRef = useRef(null);
     const [search, setSearch] = useState('');
     
@@ -18,16 +19,15 @@ export default function Search({ mealId, mealType, onSetIsAddOpen, selectedDate,
 
     return (
         <div ref={searchRef} className='search'>
-            <input
-                className='search-form__input'
+            <Input
+                label={'Search for products'}
+                id={'search'}
+                width={'100%'}
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                type='search'
-                id='product'
-                name='product'
+                onSetValue={setSearch}
             />
             {isLoadingProducts ? (
-                <Spinner />
+                <Spinner size={3} thickness={0.375}/>
             ) : (
                 <SearchResults>
                     {products && products.foods.map(food => (
@@ -37,8 +37,6 @@ export default function Search({ mealId, mealType, onSetIsAddOpen, selectedDate,
                             mealType={mealType}
                             food={food}
                             selectedDate={selectedDate}
-                            onAddMealItem={onAddMealItem}
-                            isAddingMealItem={isAddingMealItem}
                         />
                     ))}
                 </SearchResults>

@@ -1,0 +1,10 @@
+.search-results {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    & >:not(:last-child) {
+        margin-bottom: 0.25rem;
+        border-bottom: 0.125rem solid var(--body-background-color);
+    }
+}
