@@ -1,0 +1,111 @@
+.search-results-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0.375rem 0;
+
+    &__name {
+        font-size: 0.9375rem;
+        font-weight: 500;
+    }
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0.75rem 0 0.5rem 0;
+    }
+
+    &__input-container {
+        display: flex;
+        align-items: center;
+
+        & > span {
+            margin-left: 0.375rem;
+            color: var(--secondary-text-color);
+            font-size: 0.875rem;
+        }
+    }
+
+    &__add-button {
+        min-height: 2.25rem;
+        width: 5.5rem;
+        border-radius: 0.5rem;
+        border: 0.125rem solid var(--primary-element-color);
+        background-color: transparent;
+        color: var(--primary-text-color);
+        font-size: 0.9375rem;
+        font-weight: 500;
+        transition: background-color 0.25s ease-in-out;
+
+        &:hover {
+            cursor: pointer;
+            background-color: var(--primary-element-color);
+        }
+    }
+
+    &__details-button-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    &__details-button {
+        color: var(--secondary-text-color);
+        font-size: 0.875rem;
+        transition: color 0.25s ease-in-out;
+
+        & > button {
+            position: relative;
+            top: 0.25rem;
+            margin-left: 0.1875rem;
+        }
+
+        & > button svg {
+            fill: var(--secondary-text-color);
+            transition: fill 0.25s ease-in-out;
+        }
+
+        &:hover {
+            cursor: pointer;
+            color: var(--primary-text-color);
+
+            & > button svg {
+                fill: var(--primary-text-color);
+            }
+        }
+    }
+
+    &__details {
+        margin: 0.375rem 0;
+        font-size: 0.875rem;
+    }
+
+    &__nutrition-info-header {
+        display: grid;
+        grid-template-columns: 3.5fr 2fr 2fr;
+        justify-items: center;
+        align-items: center;
+        column-gap: 0.375rem;
+        width: 100%;
+        margin-bottom: 0.25rem;
+        color: var(--secondary-text-color);
+        font-size: 0.8125rem;
+        
+        & >:first-child {
+            justify-self: start;
+        }
+    }
+
+    &__nutrition-info-item {
+        display: grid;
+        grid-template-columns: 3.5fr 2fr 2fr;
+        justify-items: center;
+        align-items: center;
+        column-gap: 0.375rem;
+        width: 100%;
+
+        & >:first-child {
+            justify-self: start;
+        }
+    }
+}
