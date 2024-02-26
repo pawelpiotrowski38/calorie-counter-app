@@ -47,11 +47,12 @@
     }
 
     &__day {
-        padding: 0.25rem;
-        border-radius: 0.25rem;
+        padding: 0.125rem;
+        border-radius: 0.5rem;
+        border: 0.125rem solid var(--card-background-color);
         text-align: center;
         color: var(--primary-text-color);
-        transition: background-color 0.2s ease-in-out;
+        transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
         cursor: pointer;
 
         &:hover {
@@ -64,6 +65,10 @@
 
         &--outside-current-month {
             color: var(--tertiary-text-color);
+        }
+
+        &--today {
+            border-color: var(--primary-element-color);
         }
     }
 }

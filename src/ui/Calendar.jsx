@@ -10,6 +10,7 @@ const weekdays = new Array(7).fill(0).map((_, i) => {
 
 export default function Calendar({ selectedDate, onChangeDate, isCalendarOpen, onSetIsCalendarOpen }) {
     const [displayedDate, setDisplayedDate] = useState(selectedDate);
+    const todayDate = new Date();
 
     const handlePrevMonth = () => {
         const prevMonth = new Date(displayedDate);
@@ -60,7 +61,15 @@ export default function Calendar({ selectedDate, onChangeDate, isCalendarOpen, o
                             day === selectedDate.getDate() && month === selectedDate.getMonth() && year === selectedDate.getFullYear()
                             ? 'calendar__day--selected'
                             : ''
-                        } ${month !== displayedDate.getMonth() ? 'calendar__day--outside-current-month' : ''}`}
+                        } ${
+                            month !== displayedDate.getMonth()
+                            ? 'calendar__day--outside-current-month'
+                            : ''
+                        } ${
+                            day === todayDate.getDate() && month === todayDate.getMonth() && year === todayDate.getFullYear()
+                            ? 'calendar__day--today'
+                            : ''
+                        }`}
                         onClick={() => handleDayClick(day, month)}
                     >
                         {day}
