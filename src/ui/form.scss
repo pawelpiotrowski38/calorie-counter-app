@@ -1,0 +1,23 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30rem;
+    min-width: 12rem;
+    padding: 1rem 1.625rem;
+    padding-bottom: 1.75rem;
+    background-color: var(--card-background-color);
+    border-radius: 0.5rem;
+
+    & .form-header {
+        margin-bottom: 0.75rem;
+    }
+
+    & .input__container {
+        margin-bottom: 0.5rem;
+    }
+
+    & .button {
+        margin-top: 1rem;
+    }
+}
