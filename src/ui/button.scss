@@ -1,0 +1,18 @@
+.button {
+    min-height: 2.25rem;
+    border-radius: 0.5rem;
+    background-color: var(--primary-element-color);
+    color: var(--primary-text-color);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: background-color 0.25s ease-in-out;
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--secondary-element-color);
+    }
+
+    &:active:not([disabled]) {
+        scale: 0.98;
+    }
+}
