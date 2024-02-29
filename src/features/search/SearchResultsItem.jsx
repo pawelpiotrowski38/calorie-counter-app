@@ -32,6 +32,8 @@ export default function SearchResultsItem({ mealId, mealType, food, selectedDate
                     <Input
                         label={'Quantity'}
                         id={'quantity'}
+                        type={'text'}
+                        disabled={isAddingMealItem}
                         width={'6.5rem'}
                         value={quantity}
                         onSetValue={setQuantity}

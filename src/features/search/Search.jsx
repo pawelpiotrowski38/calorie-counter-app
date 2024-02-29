@@ -22,6 +22,7 @@ export default function Search({ mealId, mealType, onSetIsAddOpen, selectedDate 
             <Input
                 label={'Search for products'}
                 id={'search'}
+                type={'text'}
                 width={'100%'}
                 value={search}
                 onSetValue={setSearch}

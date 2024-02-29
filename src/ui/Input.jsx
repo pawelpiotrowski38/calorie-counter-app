@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './input.scss';
 
-export default function Input({ label, id, width, value, onSetValue }) {
+export default function Input({ label, id, width, type, disabled, value, onSetValue }) {
     const [isFocused, setIsFocused] = useState(false);
 
     const isInputEmpty = value.trim() === '';
@@ -15,7 +15,8 @@ export default function Input({ label, id, width, value, onSetValue }) {
             <input
                 className='input__input'
                 style={style}
-                type='text'
+                type={type}
+                disabled={disabled}
                 id={id}
                 name={id}
                 value={value}
