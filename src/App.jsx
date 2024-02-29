@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import AppLayout from './ui/AppLayout';
 import Home from './pages/Home';
 import About from './pages/About';
+import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -22,8 +23,9 @@ export default function App() {
             <BrowserRouter>
                 <Routes>
                     <Route element={<AppLayout />}>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/about" element={<About />} />
+                        <Route path='/' element={<Home />} />
+                        <Route path='/about' element={<About />} />
+                        <Route path='/login' element={<Login />} />
                     </Route>
                     <Route path="*" element={<NotFound />} />
                 </Routes>
