@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ToastContainer } from 'react-toastify';
 import AppLayout from './ui/AppLayout';
+import ProtectedRoute from './ui/ProtectedRoute';
 import Home from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';
@@ -22,11 +23,15 @@ export default function App() {
         <QueryClientProvider client={queryClient}>
             <BrowserRouter>
                 <Routes>
-                    <Route element={<AppLayout />}>
+                    <Route element={
+                        <ProtectedRoute>
+                            <AppLayout />
+                        </ProtectedRoute>
+                    }>
                         <Route path='/' element={<Home />} />
                         <Route path='/about' element={<About />} />
-                        <Route path='/login' element={<Login />} />
                     </Route>
+                    <Route path='/login' element={<Login />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
