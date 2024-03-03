@@ -7,4 +7,14 @@
     min-height: 3.25rem;
     padding: 0 0.75rem;
     background-color: var(--card-background-color);
+
+    &__menu-button {
+        cursor: pointer;
+
+        & > svg {
+            width: 2.25rem;
+            height: 2.25rem;
+            stroke: var(--primary-text-color);
+        }
+    }
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { IoMenuOutline } from "react-icons/io5";
 import Logo from './Logo';
 import Navigation from './Navigation';
-import AvatarButton from './AvatarButton';
 import Mask from './Mask';
 import './header.scss';
 
@@ -19,9 +19,12 @@ export default function Header() {
                 isNavigationOpen={isNavigationOpen}
                 onSetIsNavigationOpen={setIsNavigationOpen}
             />
-            <AvatarButton
-                onToggleNavigation={handleToggleNavigation}
-            />
+            <button
+                className='header__menu-button'
+                onClick={handleToggleNavigation}
+            >
+                <IoMenuOutline />
+            </button>
             <Mask
                 isState={isNavigationOpen}
             />
