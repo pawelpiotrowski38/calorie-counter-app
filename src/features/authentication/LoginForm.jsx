@@ -10,7 +10,7 @@ export default function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const { login, isLogging } = useLogin();
+    const { login, isLoggingIn } = useLogin();
     
     const handleSubmit = function(event) {
         event.preventDefault();
@@ -31,7 +31,7 @@ export default function LoginForm() {
                 label={'Email'}
                 id={'email'}
                 type={'text'}
-                disabled={isLogging}
+                disabled={isLoggingIn}
                 width={'100%'}
                 value={email}
                 onSetValue={setEmail}
@@ -40,13 +40,13 @@ export default function LoginForm() {
                 label={'Password'}
                 id={'password'}
                 type={'password'}
-                disabled={isLogging}
+                disabled={isLoggingIn}
                 width={'100%'}
                 value={password}
                 onSetValue={setPassword}
             />
-            <Button disabled={isLogging}>
-                {isLogging ? (
+            <Button disabled={isLoggingIn}>
+                {isLoggingIn ? (
                     <Spinner
                         color='primary-text-color'
                         size={1.5}
