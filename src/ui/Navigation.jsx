@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useClickOutside } from '../hooks/useClickOutside';
 import { AiOutlineClose } from 'react-icons/ai';
 import NavigationItem from './NavigationItem';
+import Button from './Button';
 import './navigation.scss';
 
 export default function Navigation({ isNavigationOpen, onSetIsNavigationOpen }) {
@@ -21,8 +22,22 @@ export default function Navigation({ isNavigationOpen, onSetIsNavigationOpen }) 
                     className='navigation__close-button'
                     onClick={() => onSetIsNavigationOpen(false)}
                 >
-                    <AiOutlineClose size={'34px'} className='navigation__close-icon'/>
+                    <AiOutlineClose />
                 </button>
+            </div>
+            <div className='navigation__auth-buttons-container'>
+                <Button
+                    linkTo={'./login'}
+                    onClick={() => onSetIsNavigationOpen(false)}
+                >
+                    Log in
+                </Button>
+                <Button
+                    linkTo={'./register'}
+                    onClick={() => onSetIsNavigationOpen(false)}
+                >
+                    Register
+                </Button>
             </div>
             <ul className="navigation__list">
                 <NavigationItem>

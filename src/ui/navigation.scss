@@ -1,13 +1,14 @@
 .navigation {
     position: absolute;
     top: 0;
-    right: -15rem;
+    right: -14.5rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 15rem;
+    width: 14.5rem;
     min-height: 100vh;
-    padding: 0.625rem 1rem;
+    padding: 0.75rem 0.875rem;
+    background-color: var(--card-background-color);
     z-index: 10;
     transition: all 0.3s ease-in-out;
     visibility: hidden;
@@ -22,14 +23,26 @@
         justify-content: flex-end;
         align-items: center;
         width: 100%;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
     }
 
     &__close-button {
         cursor: pointer;
+
+        & > svg {
+            width: 2rem;
+            height: 2rem;
+            fill: var(--primary-text-color);
+        }
     }
 
-    &__close-icon {
-        color: var(--primary-text-color);
+    &__auth-buttons-container {
+        display: flex;
+        width: 100%;
+        margin-bottom: 1rem;
+
+        & >:not(:last-child) {
+            margin-right: 0.5rem;
+        }
     }
 }
