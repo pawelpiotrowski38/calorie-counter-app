@@ -71,12 +71,50 @@ export async function addMealItem({ mealItem, quantity }) {
                 proteins: parseFloat((quantity/100 * mealItem.nutrients.proteins.value).toFixed(2)),
                 fats: parseFloat((quantity/100 * mealItem.nutrients.fats.value).toFixed(2)),
                 carbohydrates: parseFloat((quantity/100 * mealItem.nutrients.carbohydrates.value).toFixed(2)),
+                calories_per_100: mealItem.nutrients.calories.value,
+                proteins_per_100: parseFloat((mealItem.nutrients.proteins.value).toFixed(2)),
+                fats_per_100: parseFloat((mealItem.nutrients.fats.value).toFixed(2)),
+                carbohydrates_per_100: parseFloat((mealItem.nutrients.carbohydrates.value).toFixed(2)),
             },
         ]);
     
     if (error) {
         console.error(error);
         throw new Error('Meal item could not be added');
+    }
+
+    return data;
+}
+
+export async function editMealItem({ id, quantity }) {
+    const regex = /^[1-9]\d*$/;
+
+    if (!regex.test(quantity) || !(quantity > 0)) {
+        throw new Error('Quanity must be a positive integer');
+    }
+
+    const { data: mealItem, error: mealItemError } = await supabase
+        .from('meal_items')
+        .select('calories_per_100, proteins_per_100, fats_per_100, carbohydrates_per_100');
+    
+    if (mealItemError) {
+        throw new Error('Meal item could not be edited');
+    }
+
+    const { data, error } = await supabase
+        .from('meal_items')
+        .update({
+            quantity: quantity,
+            calories: Math.round(quantity/100 * mealItem[0].calories_per_100),
+            proteins: parseFloat((quantity/100 * mealItem[0].proteins_per_100).toFixed(2)),
+            fats: parseFloat((quantity/100 * mealItem[0].fats_per_100).toFixed(2)),
+            carbohydrates: parseFloat((quantity/100 * mealItem[0].carbohydrates_per_100).toFixed(2)), 
+        })
+        .eq('id', id);
+
+    if (error) {
+        console.error(error);
+        throw new Error('Meal item could not be edited');
     }
 
     return data;
