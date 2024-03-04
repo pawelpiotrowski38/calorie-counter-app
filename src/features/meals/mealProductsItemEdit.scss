@@ -1,0 +1,20 @@
+.meal-products-item-edit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--card-background-color);
+    box-shadow: 0 0 1rem var(--body-background-color);
+
+    &__input-container {
+        display: flex;
+        align-items: center;
+
+        & > span {
+            margin-left: 0.375rem;
+            color: var(--secondary-text-color);
+            font-size: 0.875rem;
+        }
+    }
+}
