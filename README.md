@@ -7,14 +7,14 @@ This web application enables users to search for food products and create meals,
 ## Features
 
 Users are able to:
+- register an account and log in
 - search for food products
-- add and remove food products from a particular meal
+- add, edit and remove food products from a particular meal
 - remove the whole meal
 
 TODO
-- login and registration system using Supabase authentication
-- edit food products in meals
 - add a particular food product to user's favorites
+- edit user's settings (calorie goals etc.)
 
 ## Built With
 
