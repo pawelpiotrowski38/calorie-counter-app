@@ -36,5 +36,15 @@
         &:focus {
             border-color: var(--primary-element-color);
         }
+
+        &--error {
+            border-color: var(--error-color);
+        }
+    }
+
+    &__error {
+        margin-left: 0.5rem;
+        font-size: 0.875rem;
+        color: var(--error-color);
     }
 }

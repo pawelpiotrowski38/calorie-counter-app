@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './input.scss';
 
-export default function Input({ label, id, width, type, disabled, value, onSetValue }) {
+export default function Input({ label, id, width, type, disabled, value, onSetValue, error }) {
     const [isFocused, setIsFocused] = useState(false);
 
     const isInputEmpty = value.trim() === '';
@@ -13,7 +13,7 @@ export default function Input({ label, id, width, type, disabled, value, onSetVa
     return (
         <div className='input__container'>
             <input
-                className='input__input'
+                className={`input__input ${error ? 'input__input--error' : ''}`}
                 style={style}
                 type={type}
                 disabled={disabled}
@@ -30,6 +30,9 @@ export default function Input({ label, id, width, type, disabled, value, onSetVa
             >
                 {label}
             </label>
+            <div className='input__error'>
+                {error}
+            </div>
         </div>
     )
 }
